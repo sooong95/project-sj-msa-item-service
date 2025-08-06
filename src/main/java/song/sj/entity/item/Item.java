@@ -32,9 +32,7 @@ public abstract class Item extends TimeStamp {
     private String design;
     private String description;
 
-    @JoinColumn(name = "member_id")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Member member;
+    private Long memberId;
 
     @JoinColumn(name = "item_category_id")
     @ManyToOne(fetch = FetchType.LAZY)
@@ -43,11 +41,10 @@ public abstract class Item extends TimeStamp {
     @OneToMany(mappedBy = "item")
     private List<ItemImages> itemImages = new ArrayList<>();
 
-    @OneToOne(mappedBy = "item")
-    private OrderItem orderItem;
+    private Long orderItemId;
 
     @OneToMany(mappedBy = "item")
-    private List<ItemBill> itemBillList = new ArrayList<>();
+    private List<Long> itemBillIdList = new ArrayList<>();
 
     public void addItemCategory(ItemCategory itemCategory) {
         this.itemCategory = itemCategory;
@@ -68,9 +65,9 @@ public abstract class Item extends TimeStamp {
         }
     }
 
-    public void setMember(Member member) {
-        if (Objects.nonNull(member)) this.member = member;
-        member.getItems().add(this);
+    public void setMember(Long memberId) {
+        if (Objects.nonNull(memberId)) this.memberId = memberId;
+        memberId.getItems().add(this);
     }
 
     public void changeQuantity(int quantity) {
@@ -100,9 +97,5 @@ public abstract class Item extends TimeStamp {
 
     public void changeDescription(String description) {
         if (StringUtils.hasText(description)) this.description = description;
-    }
-
-    public void setOrderItem(OrderItem orderItem) {
-        this.orderItem = orderItem;
     }
 }

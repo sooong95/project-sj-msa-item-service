@@ -6,8 +6,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 import song.sj.entity.BaseImages;
 import song.sj.entity.ItemImages;
-import song.sj.entity.ReviewImages;
-import song.sj.entity.ShopImages;
 
 import java.io.File;
 import java.io.IOException;
