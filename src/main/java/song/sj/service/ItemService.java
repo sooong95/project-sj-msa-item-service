@@ -25,7 +25,6 @@ import java.util.List;
 public class ItemService {
 
     private final ItemRepository itemRepository;
-    private final MemberService memberService;
     private final ItemImageRepository itemImageRepository;
     private final ItemCategoryRepository itemCategoryRepository;
     private final ImageFile imageFile;
@@ -35,10 +34,10 @@ public class ItemService {
         return itemRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Item not found"));
     }
 
-    public void save(ItemSaveDto dto, List<MultipartFile> files) {
+    public void save(Long userId, ItemSaveDto dto, List<MultipartFile> files) {
 
         Item item = ToItem.toItemEntity(dto);
-        item.setMember(memberService.getMemberFromJwt());
+        item.setMember(userId);
 
         itemRepository.save(item);
 

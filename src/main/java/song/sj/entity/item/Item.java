@@ -43,7 +43,6 @@ public abstract class Item extends TimeStamp {
 
     private Long orderItemId;
 
-    @OneToMany(mappedBy = "item")
     private List<Long> itemBillIdList = new ArrayList<>();
 
     public void addItemCategory(ItemCategory itemCategory) {
@@ -67,7 +66,6 @@ public abstract class Item extends TimeStamp {
 
     public void setMember(Long memberId) {
         if (Objects.nonNull(memberId)) this.memberId = memberId;
-        memberId.getItems().add(this);
     }
 
     public void changeQuantity(int quantity) {
