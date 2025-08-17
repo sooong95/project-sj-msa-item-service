@@ -37,9 +37,11 @@ public class ItemService {
     public void save(Long userId, ItemSaveDto dto, List<MultipartFile> files) {
 
         Item item = ToItem.toItemEntity(dto);
-        item.setMember(userId);
+        item.addMember(userId);
 
         itemRepository.save(item);
+
+
 
         item.addItemCategory(itemCategoryRepository.findByItemCategoryName(dto.getValue().toString()));
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import song.sj.dto.Result;
 import song.sj.dto.item.*;
-import song.sj.service.ItemQueryService;
+import song.sj.service.ItemQueryServiceImpl;
 import song.sj.service.ItemService;
 
 import java.util.List;
@@ -21,7 +21,7 @@ import java.util.List;
 public class ItemController {
 
     private final ItemService itemService;
-    private final ItemQueryService itemQueryService;
+    private final ItemQueryServiceImpl itemQueryService;
 
     @PostMapping
     public ResponseEntity<String> saveItem(@RequestHeader("X-User-Id") Long userId, @Valid @ModelAttribute ItemSaveDto dto, @RequestParam("image") List<MultipartFile> files) {

@@ -47,7 +47,6 @@ public abstract class Item extends TimeStamp {
 
     public void addItemCategory(ItemCategory itemCategory) {
         this.itemCategory = itemCategory;
-        itemCategory.getItems().add(this);
     }
 
     public void addImage(ItemImages images) {
@@ -64,7 +63,7 @@ public abstract class Item extends TimeStamp {
         }
     }
 
-    public void setMember(Long memberId) {
+    public void addMember(Long memberId) {
         if (Objects.nonNull(memberId)) this.memberId = memberId;
     }
 
@@ -95,5 +94,11 @@ public abstract class Item extends TimeStamp {
 
     public void changeDescription(String description) {
         if (StringUtils.hasText(description)) this.description = description;
+    }
+
+    public void changeItemCategory(ItemCategory itemCategory) {
+        if (Objects.nonNull(itemCategory)) {
+            this.itemCategory = itemCategory;
+        }
     }
 }
