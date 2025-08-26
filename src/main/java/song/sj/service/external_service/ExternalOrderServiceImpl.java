@@ -66,8 +66,8 @@ public class ExternalOrderServiceImpl implements ExternalOrderService {
             Item findItem = itemRepository.findById(item.getItemId()).orElseThrow();
             itemInfoDtoList.add(new ItemInfoDto(findItem.getId(), findItem.getItemName(),
                     findItem.getDescription(),
-                    findItem.getQuantity(), null));
-            log.info("아이디 = {} 아이템 이름 = {}, 수량 = {}", findItem.getId(), findItem.getItemName(), findItem.getQuantity());
+                    item.getQuantity(), null));
+            log.info("아이디 = {} 아이템 이름 = {}, 수량 = {}", findItem.getId(), findItem.getItemName(), item.getQuantity());
         }
 
         return new Result<>(itemInfoDtoList.size(), itemInfoDtoList);
